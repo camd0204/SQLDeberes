@@ -1,0 +1,2 @@
+select nombreOperacion from operacion o, norma n, pieza p where o.codigoOperacion=n.Operacion_codigoOperacion and p.codigoPieza=n.Pieza_codigoPieza and p.descripcionPieza="Lamina Bronce";
+select tipoMantenimiento,fechaMantenimiento from equipo e, logmantenimiento l where e.nombreEquipo=l.Equipo_nombreEquipo and e.modeloEquipo=l.Equipo_modeloEquipo and e.nombreEquipo="Cortadora" ;
