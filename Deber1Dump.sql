@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `deber1tables` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `deber1tables`;
+CREATE DATABASE  IF NOT EXISTS `tables1updated` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `tables1updated`;
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: deber1tables
+-- Host: localhost    Database: tables1updated
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -16,35 +16,6 @@ USE `deber1tables`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `cumplimiento`
---
-
-DROP TABLE IF EXISTS `cumplimiento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cumplimiento` (
-  `Norma_codigoNorma` int NOT NULL,
-  `ObreroDirecto_Obrero_numeroObrero` int NOT NULL,
-  `porcentajeCumplimiento` decimal(10,0) DEFAULT NULL,
-  PRIMARY KEY (`Norma_codigoNorma`,`ObreroDirecto_Obrero_numeroObrero`),
-  KEY `fk_Norma_has_ObreroDirecto_ObreroDirecto1_idx` (`ObreroDirecto_Obrero_numeroObrero`),
-  KEY `fk_Norma_has_ObreroDirecto_Norma1_idx` (`Norma_codigoNorma`),
-  CONSTRAINT `fk_Norma_has_ObreroDirecto_Norma1` FOREIGN KEY (`Norma_codigoNorma`) REFERENCES `norma` (`codigoNorma`),
-  CONSTRAINT `fk_Norma_has_ObreroDirecto_ObreroDirecto1` FOREIGN KEY (`ObreroDirecto_Obrero_numeroObrero`) REFERENCES `obrerodirecto` (`Obrero_numeroObrero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cumplimiento`
---
-
-LOCK TABLES `cumplimiento` WRITE;
-/*!40000 ALTER TABLE `cumplimiento` DISABLE KEYS */;
-INSERT INTO `cumplimiento` VALUES (1,3,50),(1,5,50),(2,7,25),(2,8,25),(2,11,25),(2,13,25),(3,4,50),(3,15,50),(4,3,100),(5,15,100),(6,4,100),(7,8,100),(8,7,100),(9,11,100),(10,13,100),(11,7,50),(11,11,50),(12,8,50),(12,13,25),(12,15,25),(13,3,50),(13,4,50),(14,8,100),(15,7,100),(16,5,100),(17,4,100),(18,3,100),(19,11,100),(20,11,100);
-/*!40000 ALTER TABLE `cumplimiento` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `equipo`
@@ -72,37 +43,6 @@ INSERT INTO `equipo` VALUES ('Cortadora','2009','USA'),('Cortadora','2021','Cana
 UNLOCK TABLES;
 
 --
--- Table structure for table `logmantenimiento`
---
-
-DROP TABLE IF EXISTS `logmantenimiento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `logmantenimiento` (
-  `Equipo_nombreEquipo` varchar(15) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Equipo_modeloEquipo` varchar(15) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `ObreroAuxiliar_Obrero_numeroObrero` int NOT NULL,
-  `tipoMantenimiento` varchar(45) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `fechaMantenimiento` datetime NOT NULL,
-  PRIMARY KEY (`Equipo_nombreEquipo`,`Equipo_modeloEquipo`,`ObreroAuxiliar_Obrero_numeroObrero`),
-  KEY `fk_Equipo_has_ObreroAuxiliar_ObreroAuxiliar1_idx` (`ObreroAuxiliar_Obrero_numeroObrero`),
-  KEY `fk_Equipo_has_ObreroAuxiliar_Equipo1_idx` (`Equipo_nombreEquipo`,`Equipo_modeloEquipo`),
-  CONSTRAINT `fk_Equipo_has_ObreroAuxiliar_Equipo1` FOREIGN KEY (`Equipo_nombreEquipo`, `Equipo_modeloEquipo`) REFERENCES `equipo` (`nombreEquipo`, `modeloEquipo`),
-  CONSTRAINT `fk_Equipo_has_ObreroAuxiliar_ObreroAuxiliar1` FOREIGN KEY (`ObreroAuxiliar_Obrero_numeroObrero`) REFERENCES `obreroauxiliar` (`Obrero_numeroObrero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `logmantenimiento`
---
-
-LOCK TABLES `logmantenimiento` WRITE;
-/*!40000 ALTER TABLE `logmantenimiento` DISABLE KEYS */;
-INSERT INTO `logmantenimiento` VALUES ('Cortadora','2009',9,'Cambio Aceite','2022-02-22 00:00:00'),('Cortadora','2009',16,'Preventivo','2022-02-21 00:00:00'),('Cortadora','2021',1,'Cambio Engranaje','2022-03-06 00:00:00'),('Cortadora','2021',14,'Cambio Cuchilla','2022-03-18 00:00:00'),('Ensambladora','2007',16,'Preventivo','2022-04-02 00:00:00'),('Fresadora','2007',16,'Preventivo','2022-03-10 00:00:00'),('Motor Fabrica','2002',1,'Cambio Engranaje','2022-03-04 00:00:00'),('Motor Fabrica','2002',2,'Reensamblaje','2022-03-05 00:00:00'),('Motor Fabrica','2002',9,'Cambio Aceite','2022-03-04 00:00:00'),('Motor Fabrica','2002',14,'Cambio Bugia','2022-03-12 00:00:00'),('Motor Fabrica','2002',16,'Preventivo','2022-03-03 00:00:00');
-/*!40000 ALTER TABLE `logmantenimiento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `norma`
 --
 
@@ -116,7 +56,7 @@ CREATE TABLE `norma` (
   `Pieza_codigoPieza` int NOT NULL,
   `Operacion_codigoOperacion` int NOT NULL,
   `descripcionNorma` varchar(45) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `tiempoexecNorma` decimal(10,0) NOT NULL,
+  `tiempoexecNorma` decimal(2,0) NOT NULL,
   PRIMARY KEY (`codigoNorma`),
   KEY `fk_table1_Pieza1_idx` (`Pieza_codigoPieza`),
   KEY `fk_table1_Operacion1_idx` (`Operacion_codigoOperacion`),
@@ -149,6 +89,7 @@ CREATE TABLE `obrero` (
   `nombreObrero` varchar(15) COLLATE utf8mb3_unicode_ci NOT NULL,
   `categoriaObrero` varchar(10) COLLATE utf8mb3_unicode_ci NOT NULL,
   `calificacionObrero` varchar(45) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `salarioObrero` float DEFAULT NULL,
   PRIMARY KEY (`numeroObrero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -159,7 +100,7 @@ CREATE TABLE `obrero` (
 
 LOCK TABLES `obrero` WRITE;
 /*!40000 ALTER TABLE `obrero` DISABLE KEYS */;
-INSERT INTO `obrero` VALUES (1,'Carlos Montiel','Auxiliar','Informatico'),(2,'Paul Quimbita','Auxiliar','Informatico'),(3,'Mara Fortuny','Directo','Informatico'),(4,'Andres Andrade','Directo','Quimico'),(5,'Boris Becker','Directo','Industrial'),(6,'Camilo Castro','Auxiliar','Industrial'),(7,'Daniela Daniel','Directo','Mecanico'),(8,'Emilio Estevez','Directo','Quimico'),(9,'Fanny Flan','Auxiliar','Informatico'),(10,'Gabriel Garcia','Auxiliar','Industrial'),(11,'Ines Izquierdo','Directo','Quimico'),(12,'Jorge Jamil','Auxiliar','Mecanico'),(13,'Kate Kamila','Directo','Mecanico'),(14,'Luis Lamas','Auxiliar','Informatico'),(15,'Maria Montiel','Directo','Industrial'),(16,'Nicolas Narino','Auxiliar','Mecanico');
+INSERT INTO `obrero` VALUES (1,'Carlos Montiel','Auxiliar ','Informatico',2500),(2,'Paul Quimbita','Auxiliar','Informatico',2534),(3,'Mara Fortuny','Directo','Informatico',1809),(4,'Andres Andrade','Directo','Quimico',1803),(5,'Boris Becker','Directo','Industrial',1854),(6,'Camilo Castro','Auxiliar','Industrial',2432),(7,'Daniela Daniel','Directo','Mecanico',1533),(8,'Emilio Estevez','Directo','Quimico ',1764),(9,'Fanny Flan','Auxiliar','Informatico',2381),(10,'Gabriel Garcia','Auxiliar','Industrial',2592),(11,'Ines Izquierdo','Directo','Quimico',1824),(12,'Jorge Jara','Auxiliar','Mecanico',2534),(13,'Kris Kross','Directo','Mecanico',1762),(14,'Luis Lamas','Auxiliar','Informatico',2323),(15,'Maria Montiel','Directo','Industrial',1567),(16,'Nicolas Norero','Auxiliar','Mecanico',2513);
 /*!40000 ALTER TABLE `obrero` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,8 +113,13 @@ DROP TABLE IF EXISTS `obreroauxiliar`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `obreroauxiliar` (
   `Obrero_numeroObrero` int NOT NULL,
-  `salarioObreroAuxiliar` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`Obrero_numeroObrero`),
+  `Equipo_nombreEquipo` varchar(15) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `Equipo_modeloEquipo` varchar(15) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `fechaMantenimiento` datetime NOT NULL,
+  `tipoMantenimiento` varchar(45) COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`Obrero_numeroObrero`,`Equipo_nombreEquipo`,`Equipo_modeloEquipo`),
+  KEY `fk_ObreroAuxiliar_Equipo1_idx` (`Equipo_nombreEquipo`,`Equipo_modeloEquipo`),
+  CONSTRAINT `fk_ObreroAuxiliar_Equipo1` FOREIGN KEY (`Equipo_nombreEquipo`, `Equipo_modeloEquipo`) REFERENCES `equipo` (`nombreEquipo`, `modeloEquipo`),
   CONSTRAINT `fk_ObreroAuxiliar_Obrero1` FOREIGN KEY (`Obrero_numeroObrero`) REFERENCES `obrero` (`numeroObrero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -184,7 +130,7 @@ CREATE TABLE `obreroauxiliar` (
 
 LOCK TABLES `obreroauxiliar` WRITE;
 /*!40000 ALTER TABLE `obreroauxiliar` DISABLE KEYS */;
-INSERT INTO `obreroauxiliar` VALUES (1,2500),(2,2534),(6,2432),(9,2381),(10,2592),(12,2534),(14,2323),(16,2513);
+INSERT INTO `obreroauxiliar` VALUES (1,'Cortadora','2021','2022-03-06 00:00:00','Cambio Engranaje'),(1,'Motor Fabrica','2002','2022-03-04 00:00:00','Cambio Engranaje'),(2,'Motor Fabrica','2002','2022-03-05 00:00:00','Reensamblaje'),(9,'Cortadora','2009','2022-02-22 00:00:00','Cambio Aceite'),(9,'Motor Fabrica','2002','2022-03-04 00:00:00','Cambio Aceite'),(14,'Cortadora','2021','2022-03-18 00:00:00','Cambio Cuchilla'),(14,'Motor Fabrica','2002','2022-03-12 00:00:00','Cambio Bugia'),(16,'Cortadora','2009','2022-02-21 00:00:00','Preventivo'),(16,'Ensambladora','2007','2022-04-02 00:00:00','Preventivo'),(16,'Fresadora','2007','2022-03-10 00:00:00','Preventivo'),(16,'Motor Fabrica','2002','2022-03-03 00:00:00','Preventivo');
 /*!40000 ALTER TABLE `obreroauxiliar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,8 +143,11 @@ DROP TABLE IF EXISTS `obrerodirecto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `obrerodirecto` (
   `Obrero_numeroObrero` int NOT NULL,
-  `salarioObreroDirecto` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`Obrero_numeroObrero`),
+  `Norma_codigoNorma` int NOT NULL,
+  `porcentajeCumplimiento` float DEFAULT NULL,
+  PRIMARY KEY (`Obrero_numeroObrero`,`Norma_codigoNorma`),
+  KEY `fk_ObreroDirecto_Norma1_idx` (`Norma_codigoNorma`),
+  CONSTRAINT `fk_ObreroDirecto_Norma1` FOREIGN KEY (`Norma_codigoNorma`) REFERENCES `norma` (`codigoNorma`),
   CONSTRAINT `fk_ObreroDirecto_Obrero1` FOREIGN KEY (`Obrero_numeroObrero`) REFERENCES `obrero` (`numeroObrero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -209,7 +158,7 @@ CREATE TABLE `obrerodirecto` (
 
 LOCK TABLES `obrerodirecto` WRITE;
 /*!40000 ALTER TABLE `obrerodirecto` DISABLE KEYS */;
-INSERT INTO `obrerodirecto` VALUES (3,1809),(4,1803),(5,1854),(7,1533),(8,1764),(11,1824),(13,1762),(15,1567);
+INSERT INTO `obrerodirecto` VALUES (3,1,50),(3,4,100),(3,13,50),(3,18,100),(4,3,50),(4,6,100),(4,13,50),(4,17,100),(5,1,50),(5,16,100),(7,2,25),(7,8,100),(7,11,50),(7,15,100),(8,2,25),(8,7,100),(8,12,50),(8,14,100),(11,2,25),(11,9,100),(11,11,50),(11,19,100),(11,20,100),(13,2,25),(13,10,100),(13,12,25),(15,3,50),(15,5,100),(15,12,25);
 /*!40000 ALTER TABLE `obrerodirecto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +196,7 @@ DROP TABLE IF EXISTS `pieza`;
 CREATE TABLE `pieza` (
   `codigoPieza` int NOT NULL,
   `descripcionPieza` varchar(25) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `pesoPieza` decimal(10,0) NOT NULL,
+  `pesoPieza` decimal(2,0) NOT NULL,
   PRIMARY KEY (`codigoPieza`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -263,38 +212,11 @@ INSERT INTO `pieza` VALUES (1,'Motor',10),(2,'Tuerca Industrial',1),(3,'Taladro'
 UNLOCK TABLES;
 
 --
--- Table structure for table `pieza_has_operacion`
---
-
-DROP TABLE IF EXISTS `pieza_has_operacion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pieza_has_operacion` (
-  `Pieza_codigoPieza` int NOT NULL,
-  `Operacion_codigoOperacion` int NOT NULL,
-  PRIMARY KEY (`Pieza_codigoPieza`,`Operacion_codigoOperacion`),
-  KEY `fk_Pieza_has_Operacion_Operacion1_idx` (`Operacion_codigoOperacion`),
-  KEY `fk_Pieza_has_Operacion_Pieza_idx` (`Pieza_codigoPieza`),
-  CONSTRAINT `fk_Pieza_has_Operacion_Operacion1` FOREIGN KEY (`Operacion_codigoOperacion`) REFERENCES `operacion` (`codigoOperacion`),
-  CONSTRAINT `fk_Pieza_has_Operacion_Pieza` FOREIGN KEY (`Pieza_codigoPieza`) REFERENCES `pieza` (`codigoPieza`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pieza_has_operacion`
---
-
-LOCK TABLES `pieza_has_operacion` WRITE;
-/*!40000 ALTER TABLE `pieza_has_operacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pieza_has_operacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'deber1tables'
+-- Dumping events for database 'tables1updated'
 --
 
 --
--- Dumping routines for database 'deber1tables'
+-- Dumping routines for database 'tables1updated'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -306,4 +228,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-02 20:17:10
+-- Dump completed on 2022-10-04 17:12:21
